@@ -6,8 +6,15 @@
 /*   By: cacortes <cacortes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/14 18:20:30 by cacortes          #+#    #+#             */
-/*   Updated: 2026/09/14 18:20:42 by cacortes         ###   ########.fr       */
+/*   Updated: 2026/09/15 09:24:08 by cacortes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Array.hpp"
+
+int	main()
+{
+	int *a = new int();
+
+	std::cout << a << std::endl;
+}
