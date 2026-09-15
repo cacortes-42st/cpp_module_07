@@ -6,7 +6,7 @@
 /*   By: cacortes <cacortes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/14 18:20:04 by cacortes          #+#    #+#             */
-/*   Updated: 2026/09/15 09:58:11 by cacortes         ###   ########.fr       */
+/*   Updated: 2026/09/15 23:05:08 by cacortes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,46 +14,83 @@
 #define ARRAY_HPP
 
 #include <iostream>
+#include <cstdlib>
 
 template <typename T>
 class	Array 
 {
 	private:
 	
-		T array;
-		unsigned int size;
+		T *array;
+		unsigned int _size;
 
 
 	public:
 	
-		Array(): size(0)
+		Array(): _size(0)
 		{
 			std::cout << "Default constructor called: empty array created." << std::endl;
 			this->array = new T[0];
 		}
 
-		Array(unsigned int n)
+		Array(unsigned int n) : _size(n)
 		{
 			std::cout << "Constructor called: " << n << " elements array created." << std::endl;
-			this->array = new T[n];
+			this->array = new T[n]();
 		}
 
-		Array(const T &other)
+		Array(const Array &other) : _size(other._size)
 		{
 			std::cout << "Copy constructor called." << std::endl;
-			*this = other;
+		
+			this->array = new T[this->_size];
+
+			for (unsigned int i = 0; i < this->_size; i++)
+				this->array[i] = other.array[i];
 		}
 
-		Array &operator=(const T &value)
+		Array &operator=(const Array &value)
 		{
 			std::cout << "Assigment operator called." << std::endl;
-			(void)value;
+
+			if (*this == &value)
+				return *this;
+
+			delete[] this->array;
+
+			this->_size = value._size;
+			this->array = new T[this->_size];
+
+			for (unsigned int i = 0; i < this->_size; i++)
+				this->array[i] = value.array[i];
 			return *this;
+		}
+
+		~Array()
+		{
+			std::cout << "Destructor called." << std::endl;
+			delete[] this->array;
 		}
 
 		T &operator[](unsigned int index)
 		{
-			// ¿Uso el size para medir los límites del index?
+			if (index >= this->_size)
+				throw OutIndexException();
+			return this->array[index];
 		}
+
+		unsigned int size(void) const
+		{
+			return this->_size;
+		}
+		
+		class	OutIndexException : public std::exception
+		{
+			public:
+				virtual const char *what() const throw()
+				{
+					return "The index is out of bounds.";
+				}
+		};
 };
 #endif
