@@ -6,7 +6,7 @@
 /*   By: cacortes <cacortes@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/14 18:20:30 by cacortes          #+#    #+#             */
-/*   Updated: 2026/09/16 10:58:31 by cacortes         ###   ########.fr       */
+/*   Updated: 2026/09/16 11:49:06 by cacortes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ int main(int, char**)
 				<< assigned[0] << std::endl;
 
 
-	std::cout << "\n===== EMTPY ARRAY TEST =====" << std::endl;
+	std::cout << "\n===== EMPTY ARRAY TEST =====" << std::endl;
 	Array<int> empty;
 
 	std::cout << "Size: " << empty.size() << std::endl;
