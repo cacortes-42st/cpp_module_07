@@ -3,18 +3,23 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cacortes <cacortes@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cacortes <cacortes@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/14 18:20:30 by cacortes          #+#    #+#             */
-/*   Updated: 2026/09/15 20:13:00 by cacortes         ###   ########.fr       */
+/*   Updated: 2026/09/16 10:58:31 by cacortes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Array.hpp"
+#include <iostream> 
+#include <string>
+#include <cstdlib>
 
 #define MAX_VAL 750
 int main(int, char**)
 {
+    
+    std::cout << "\n===== DEFAULT TESTS =====" << std::endl;
     Array<int> numbers(MAX_VAL);
     int* mirror = new int[MAX_VAL];
     srand(time(NULL));
@@ -24,7 +29,6 @@ int main(int, char**)
         numbers[i] = value;
         mirror[i] = value;
     }
-    //SCOPE
     {
         Array<int> tmp = numbers;
         Array<int> test(tmp);
@@ -59,6 +63,56 @@ int main(int, char**)
     {
         numbers[i] = rand();
     }
-    delete [] mirror;//
+
+
+	std::cout << "\n===== DEEP COPY TEST =====" << std::endl;
+    
+	Array<int> assigned(3);
+
+	assigned[0] = 100;
+	assigned[1] = 200;
+	assigned[2] = 300;
+
+	assigned = numbers;
+
+	std::cout << "assigned[0] before modification: "
+				<< assigned[0] << std::endl;
+
+	assigned[0] = 1234;
+
+	std::cout << "numbers[0] after modifying assigned: "
+				<< numbers[0] << std::endl;
+
+	std::cout << "assigned[0] after modification: "
+				<< assigned[0] << std::endl;
+
+
+	std::cout << "\n===== EMTPY ARRAY TEST =====" << std::endl;
+	Array<int> empty;
+
+	std::cout << "Size: " << empty.size() << std::endl;
+
+	try
+	{
+		std::cout << empty[0] << std::endl;
+	}
+	catch (const std::exception &e)
+	{
+		std::cout << "Exception caught: " << e.what() << std::endl;
+	}
+
+	
+	std::cout << "\n===== DEFAULT INITIALIZATION TEST =====" << std::endl;
+
+	Array<int> numbs(5);
+
+	std::cout << "Size: " << numbs.size() << std::endl;
+
+	for (unsigned int i = 0; i < numbs.size(); i++)
+		std::cout << "numbs[" << i << "] = " << numbs[i] << std::endl;
+
+
+    std::cout << "\n===== END =====" << std::endl;
+    delete [] mirror;
     return 0;
 }

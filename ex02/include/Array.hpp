@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Array.hpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cacortes <cacortes@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cacortes <cacortes@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/14 18:20:04 by cacortes          #+#    #+#             */
-/*   Updated: 2026/09/15 23:05:08 by cacortes         ###   ########.fr       */
+/*   Updated: 2026/09/16 10:50:17 by cacortes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #define ARRAY_HPP
 
 #include <iostream>
-#include <cstdlib>
+
 
 template <typename T>
 class	Array 
@@ -53,7 +53,7 @@ class	Array
 		{
 			std::cout << "Assigment operator called." << std::endl;
 
-			if (*this == &value)
+			if (this == &value)
 				return *this;
 
 			delete[] this->array;
@@ -72,6 +72,7 @@ class	Array
 			delete[] this->array;
 		}
 
+		
 		T &operator[](unsigned int index)
 		{
 			if (index >= this->_size)
@@ -79,6 +80,14 @@ class	Array
 			return this->array[index];
 		}
 
+		const T &operator[](unsigned int index) const
+		{
+			if (index >= this->_size)
+				throw OutIndexException();
+			return this->array[index];
+		}
+				
+		
 		unsigned int size(void) const
 		{
 			return this->_size;
