@@ -5,27 +5,23 @@
 * If you find any kind of error or have suggestions to improve, please do not hesitate to point them out in the `issues` section! Obviously always respectfully, thank you :D.
 * Always remember that the output examples are just examples. They can vary in your own project and still be fine.
 
+
 ## ex00: Start with a few functions
 
 ### Mandatory requirements completed:
 
-* Implement the following function templates:
-
+* The following function templates are implemented:
   * `swap`:
-
     * Swaps the values of two given parameters.
     * Does not return anything.
   * `min`:
-
-    * Compares the two values passed as parameters and returns the smallest one.
+    * Compares the two values passed as parameters and returns the *smallest* one.
     * If they are equal, it returns the second one.
   * `max`:
-
-    * Compares the two values passed as parameters and returns the greatest one.
+    * Compares the two values passed as parameters and returns the *greatest* one.
     * If they are equal, it returns the second one.
-* These functions can be called with any type of argument.
-* The two arguments must have the same type and support all the comparison operators.
-* The templates are defined in the header files.
+	* These functions can be called with any type of argument.
+	* The two arguments have the same type and support all the comparison operators.
 
 ### What can we learn about this exercise?:
 
@@ -35,23 +31,18 @@ The purpose of this exercise is to understand how **function templates** work in
 
 ![Example](images/ex00-output.png)
 
+
 ## ex01: Iter
 
 ### Mandatory requirements completed:
 
 * Implement a function template `iter` that:
-
-  * Takes three parameters.
+  * Takes *three* parameters.
+  	* Receives *the address of an array* as its first parameter.
+  	* Receives *the length of the array* as its second parameter, passed as a `const` value.
+	* Receives a *function* as its third parameter, which is called on every element of the array and can be an instantiated function template. Also it may take its argument by `const` or `non-const` reference (The two options are implemented).
   * Returns nothing.
-  * Receives the address of an array as its first parameter.
-  * Receives the length of the array as its second parameter, passed as a `const` value.
-  * Receives a function as its third parameter, which is called on every element of the array.
-* The function must work with arrays of any type.
-* The function passed as the third parameter can be an instantiated function template.
-* The function passed as the third parameter may take its argument by:
 
-  * `const` reference.
-  * non-`const` reference.
 * Tests are included in `main.cpp` to verify the behavior of the function with different types and contexts.
 
 ### What can we learn about this exercise?:
@@ -61,6 +52,7 @@ This exercise introduces the use of **function templates with arrays and functio
 ### Output example:
 
 ![Example](images/ex01-output.png)
+
 
 ## ex02: Array
 
